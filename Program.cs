@@ -4,6 +4,8 @@
 //BlackJack, juntar 21 puntos solicitando cartas, en caso de pasarte de 21 pierdes
 //en caso de tener menos de 21 y tener mayor puntos que el dealer ganas
 //\\\\\\\\\\\\\\\\\  crtl + k + d indenta el codigo 
+
+// version 2 IMPLEMENTAR LA FUNCION DE APUESTA EN LA CUAL 
 int totalJugador = 0;
 int totalDealer = 0;
 string message = "";
@@ -12,14 +14,20 @@ int num = 0;
 string controlOtraCarta = "";
 System.Random random = new System.Random();
 int platziCoins = 0;
+int apuesta = 0;
+bool victoria = true;
 
-while (true){
+while (true) {
 
     Console.WriteLine("Welcome al P l a t z i n o");
     Console.WriteLine("¿Cuántos PlatziCoins deseas? \n" +
                        "Ingresa un número entero \n" +
                        "Recuerda que necesitas 1 por ronda");
     platziCoins = int.Parse(Console.ReadLine());
+    Console.WriteLine($"CUENTAS CON LOS SIGUIENTES PLATZICOINS: {platziCoins}");
+
+    Console.WriteLine("¿Cuantos platzicoins deseas apostar:");
+    apuesta = int.Parse(Console.ReadLine());
 
 
     for (int i = 0; i < platziCoins; i++)
@@ -60,7 +68,14 @@ while (true){
                 if (totalJugador > totalDealer && totalJugador < 22)
                 {
                     message = "venciste al dealer, felicidades";
+                    victoria = true;
                     switchControl = "menu";
+                    if (victoria == true)
+                    {
+                        platziCoins = (platziCoins + apuesta);
+
+                        Console.WriteLine($"TU NUEVO SALDO DE PLATZICOINS ES : {platziCoins}");
+                    }
                 }
                 else if (totalJugador >= 22)
                 {
@@ -86,6 +101,7 @@ while (true){
 
                 break;
         }
+       
 
     }
 }
